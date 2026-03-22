@@ -7,8 +7,71 @@
     <h2>Available Courses</h2>
     <ul>
         {% for c in courses %}
-            <li><a href="{{ url_for('course', course_id=loop.index) }}">{{ c.title }}</a></li>
+            <!-- Course links trigger openModal instead of navigating to a new page -->
+            <li><a href="javascript:void(0);" onclick="openModal({{ loop.index }})">{{ c.title }}</a></li>
         {% endfor %}
     </ul>
 </div>
+
+<!-- Modal Structure -->
+<div id="courseModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <div id="modal-body">
+            <!-- Course details will be dynamically loaded here -->
+            <p>Loading course details...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    /**
+     * Function to fetch course details from the API and display them in a modal.
+     * @param {number} courseId - The 1-based index of the course.
+     */
+    function openModal(courseId) {
+        // Show the modal
+        const modal = document.getElementById('courseModal');
+        const modalBody = document.getElementById('modal-body');
+        modal.style.display = 'block';
+        modalBody.innerHTML = '<p>Loading course details...</p>';
+
+        // Fetch course data from the JSON API
+        fetch(`/api/course/${courseId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Course not found');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Populate the modal content with course data
+                modalBody.innerHTML = `
+                    <h1>${data.title}</h1>
+                    <p>${data.description}</p>
+                    <p><strong>Instructor:</strong> ${data.instructor}</p>
+                    <p><strong>Duration:</strong> ${data.duration}</p>
+                `;
+            })
+            .catch(error => {
+                // Show error message if fetch fails
+                modalBody.innerHTML = `<p>Error: ${error.message}</p>`;
+            });
+    }
+
+    /**
+     * Function to close the modal.
+     */
+    function closeModal() {
+        document.getElementById('courseModal').style.display = 'none';
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('courseModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
 {% endblock %}
