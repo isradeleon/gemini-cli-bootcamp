@@ -51,3 +51,32 @@ python3 tests/test_app.py
 - **Data:** Course data is currently in-memory in `models.py`. Any new data structures should be added there.
 - **Testing:** New features or bug fixes must be accompanied by updates to `tests/test_app.py` to ensure continued reliability.
 - **Styling:** Maintain the aesthetic defined in `src/static/css/styles.css`. Avoid inline styles in templates.
+
+## Unit Testing Policy (Required)
+
+### When to Add or Update Tests
+
+- **Every new feature** MUST include corresponding unit tests.
+- **Any major change or refactor** MUST update existing tests or add new ones.
+
+### Test Coverage Expectations
+
+- Tests should cover:
+  - Core business logic in `models.py`
+  - View behavior and edge cases in `views.py`
+- Don not test Flask or framework internals; focus on application logic.
+
+### Test Location & Naming
+
+- All tests must be placed under the `tests/` directory.
+- Test files must be named with the `test_<module>.py` convention.
+- Test functions should be small, isolated, and clearly named.
+
+### Validation Before Completion
+
+- All tests MUST pass before a feature or change is considered complete.
+- Run the full test suite using:
+
+```
+python -m unittest discover -s tests
+```
