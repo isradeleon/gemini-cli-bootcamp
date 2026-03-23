@@ -10,5 +10,5 @@ app.add_url_rule('/contact', endpoint='contact', view_func=contact)
 app.add_url_rule('/api/course/<int:course_id>', endpoint='get_course_api', view_func=get_course_api)
 
 if __name__ == '__main__':
-    # Run the application in debug mode on port 5001
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    # Run the application in debug mode on port 5002
+    app.run(debug=True, host='127.0.0.1', port=5002)

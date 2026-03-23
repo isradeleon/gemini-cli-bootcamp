@@ -59,7 +59,7 @@ To run the application, execute the following command:
 python src/app.py
 ```
 
-Visit `http://127.0.0.1:5000` in your web browser to view the application.
+Visit `http://127.0.0.1:5002` in your web browser to view the application.
 
 ## Testing
 

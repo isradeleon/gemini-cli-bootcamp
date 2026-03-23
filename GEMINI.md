@@ -34,7 +34,7 @@ To start the development server:
 source .venv/bin/activate
 cd src && python3 app.py
 ```
-The application will be available at `http://127.0.0.1:5000/`.
+The application will be available at `http://127.0.0.1:5002/`.
 
 ### Running Tests
 To execute the unit tests:
