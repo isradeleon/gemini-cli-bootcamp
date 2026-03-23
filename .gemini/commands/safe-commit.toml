@@ -1,0 +1,20 @@
+description = "Stage all changes, generate a commit message, and commit the changes on a branch different from main or master."
+prompt = """
+Your task is to stage all current changes, generate a structured and concise commit message based on those changes, and then perform the git commit on a branch different from main or master.
+
+IMPORTANT: Do not commit the changes on the main or master branch.
+
+Follow these steps:
+1. Check local status using `git status`.
+2. If there are no changes, just stop and inform me.
+3. Stage all changes in the current directory using the `git add .` command.
+4. After staging, analyze the staged changes to understand the modifications by reviewing the output of `git diff --staged`.
+5. Check the current branch name using `git branch --show-current`.
+6. If the branch is `main` or `master`, create a new branch using `git checkout -b <branch-name>` following the convention feature/<feature-name> or fix/<bug-name>.
+7. Now generate a commit message with the following structure:
+    **Subject Line:** A short and concise summary of the changes.
+    **Body:** A brief description of the changes, explaining the 'what' and 'why'. This should be a maximum of one or two sentences.
+    NOTE: Ensure there is a blank line between the subject and the body.
+8. Construct and execute the `git commit` command using the generated subject and body.
+9. Finally, push the changes to the remote repository corresponding branch.
+"""
