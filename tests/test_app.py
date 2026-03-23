@@ -32,5 +32,13 @@ class AppTestCase(unittest.TestCase):
         self.assertEqual(data['title'], 'Introduction to Python')
         self.assertEqual(data['instructor'], 'John Doe')
 
+    def test_contact_page(self):
+        # Test for the contact page
+        response = self.app.get('/contact')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Contact Us', response.data)
+        self.assertIn(b'Send us a message', response.data)
+        self.assertIn(b'Twitter', response.data)
+
 if __name__ == '__main__':
     unittest.main()

@@ -19,6 +19,10 @@ def course(course_id):
         
     return render_template('course.html', course=course_obj)
 
+# View for the contact page
+def contact():
+    return render_template('contact.html')
+
 # API view to return course details as JSON
 def get_course_api(course_id):
     # Convert course_id to index (1-based to 0-based)
