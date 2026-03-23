@@ -1,0 +1,4 @@
+description = "Explains a technical file in simple terms"
+prompt = """
+Explain the content of this file in simple terms: {{args}}
+"""
