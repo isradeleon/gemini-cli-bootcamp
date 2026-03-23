@@ -1,0 +1,4 @@
+description = "Generates a commit message based on the current staged changes."
+prompt = """
+generate a clear commit message based on the current staged changes
+"""
